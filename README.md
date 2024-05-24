@@ -1,3 +1,21 @@
+
+Afin de pouvoir interagir avec ce cluster à distance, il est essentiel de récupérer le fichier kubeconfig.yml.
+
+Pour accomplir cette tâche, la commande "export KUBECONFIG='C:\Users\Nathan\Documents\Ecole\CFaInsta\ICVAD\k8s-rmq-evaluation/kubeconfig.yml'"
+
+Cette commande a pour but de définir une variable d'environnement appelée KUBECONFIG
+
+Ensuite,   vérifie que la configuration a fonctionné en affichant les nœuds du cluster on a fait un "kubectl get nodes". Ci-dessous une capture d'écran illusatant les propos : 
+![alt text](<Screenshot/Etape 1/image.png>)
+
+
+A l'issus de cela on a crée le namespace a grace  " kubectl create namespace nathanbenais". Par la suite, nous avons confirmé cette création en exécutant la commande "kubectl get namespaces".
+![alt text](<Screenshot/Etape 1/image-1.png>)
+
+Puis pour acceder au namespace on a effectuer cette ligne de commande : 
+![alt text](<Screenshot/Etape 1/kubectl config set-context --current --namespace=nathanbenais.png>)
+
+
 # Examen
 
 ## Prérequis
