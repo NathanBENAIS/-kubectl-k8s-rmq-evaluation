@@ -61,34 +61,6 @@ De plus, pour examiner les journaux du pod du serveur et vérifier son bon fonct
 
 ![alt text](<Screenshot/Etape 3/kubectl logs counter-database-deploymentfd679b886d68jf.png>)
 
-Etapes 5
-
-Après avoir assuré le bon fonctionnement du serveur, la prochaine étape consistait à mettre en place un autoscaler pour qu'il puisse s'adapter à la charge de travail. 
-
-Pour cela, plusieurs éléments ont été ajoutés :
-Dockerfile pour count.js : Un Dockerfile a été créé pour le fichier count.js, . 
-
-counter-backend-service : Un fichier de service Kubernetes (counter-backend-service) a été ajouté pour exposer le déploiement du serveur en tant que service interne dans le cluster. 
-
-rabbitmq-hpa.yaml : Un fichier YAML (rabbitmq-hpa.yaml) a été créé pour définir la configuration de l'autoscaler horizontal pour RabbitMQ. 
-
-count-deployment.yaml : Un autre fichier YAML (count-deployment.yaml) a été ajouté pour déployer l'application de comptage (probablement associée au serveur) dans le cluster Kubernetes. 
-
-Les commandes suivantes ont été utilisées pour mettre en place ces nouveaux éléments :
-Pour déployer le service du backend :
-
-"kubectl apply -f counter-backend-service.yaml"
-Pour créer l'horizontal autoscaler pour RabbitMQ :
-
-"kubectl apply -f rabbitmq-hpa.yaml"
-
-Pour le compte.js :
-"docker build -t nathanbenais/counter ."
-"docker push nathanbenais/counter"
-
-Pour déployer l'application de comptage :
-
-" kubectl apply -f count-deployment.yaml"
 
 
 
