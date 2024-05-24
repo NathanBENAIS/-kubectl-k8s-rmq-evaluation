@@ -1,0 +1,38 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.19.6",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/preset-typescript": "^7.18.6",
+    "@frenchpastries/arrange": "^1.0.1",
+    "@frenchpastries/assemble": "^1.0.0",
+    "@frenchpastries/millefeuille": "^1.0.2",
+    "@ghivert/caravel": "^0.2.0",
+    "@types/amqplib": "^0.10.5",
+    "@types/pg": "^8.6.5",
+    "@types/uuid": "^8.3.4",
+    "amqplib": "^0.10.4",
+    "dotenv": "^16.0.3",
+    "node-fetch": "^3.2.10",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "babel-jest": "^29.2.2",
+    "ts-node": "^10.9.1",
+    "tsc": "^2.0.4",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "start": "ts-node src/main",
+    "compile": "tsc",
+    "test": "jest",
+    "dev": "ts-node src/main",
+    "clean": "rm -rf build",
+    "build": "yarn clean && yarn compile",
+    "migrate": "caravel migrate",
+    "seed": "node ../scripts/seed"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "strict": true,
+    "preserveConstEnums": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "build",
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
+  },
+  "exclude": ["node_modules"]
+}
