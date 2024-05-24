@@ -30,8 +30,24 @@ spec:
             - name: PGPASSWORD
               value: "mypassword"        
             - name: PORT
-              value: "5432"                        
+              value: "5432"                          
+      
           ports:
             - containerPort: 4040
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter-backend-service
+  namespace: nathanbenais
+spec:
+  selector:
+    app: counter-backend
+  ports:
+    - protocol: TCP
+      port: 4040
+      targetPort: 4040
+  type: LoadBalancer
 
