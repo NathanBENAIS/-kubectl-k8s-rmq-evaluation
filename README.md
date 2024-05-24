@@ -1,4 +1,4 @@
-
+Etapes 1
 Afin de pouvoir interagir avec ce cluster à distance, il est essentiel de récupérer le fichier kubeconfig.yml.
 
 Pour accomplir cette tâche, la commande "export KUBECONFIG='C:\Users\Nathan\Documents\Ecole\CFaInsta\ICVAD\k8s-rmq-evaluation/kubeconfig.yml'"
@@ -12,8 +12,34 @@ Ensuite,   vérifie que la configuration a fonctionné en affichant les nœuds d
 A l'issus de cela on a crée le namespace a grace  " kubectl create namespace nathanbenais". Par la suite, nous avons confirmé cette création en exécutant la commande "kubectl get namespaces".
 ![alt text](<Screenshot/Etape 1/image-1.png>)
 
-Puis pour acceder au namespace on a effectuer cette ligne de commande : 
+Puis pour accéder au namespace on a effectué cette ligne de commande "kubectl config set-context --current --namespace=nathanbenais" : 
 ![alt text](<Screenshot/Etape 1/kubectl config set-context --current --namespace=nathanbenais.png>)
+
+
+Etapes 2
+Pour installer l'opérateur de cluster RabbitMQ, on a fait la commande "kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml"" . Cette action permet d'appliquer la configuration.
+
+Ensuite, pour déployer le cluster RabbitMQ,on a exécuté la commande "kubectl apply -f rabbitmq-cluster.yml".  
+
+Après avoir exécuté ces commandes, pour vérifier les déploiement de RabbitMQ, on a effectué la commande "kubectl get pods"
+Voici les résultats :  
+![alt text](<Screenshot/Etape 2/déployer RabbitMQ sur le cluster.png>)
+
+![alt text](<Screenshot/Etape 2/déployer RabbitMQ sur le cluster.png>)
+
+
+Pour déployer la base de données database" PostgreSQL , on a effectuer plusieurs étapes :
+Tout d'abord, on a effectué un script de (build.sh). Ce script est conçu pour construire l'image Docker en utilisant la commande "docker build -t counter-database ."
+Quant au script "run.sh", son rôle est d'assurer le démarrage du conteneur PostgreSQL. Il commence par essayer de démarrer un conteneur existant nommé "counter-database".
+Après l'exécution réussie de ces scripts, on a vérifié que le déploiement s'est effectué correctement en examinant l'image Docker créée à l'aide de la commande "docker images", ainsi que la présence du conteneur actif avec la commande "docker ps"
+Voici les résultats : 
+[text](<Screenshot/Etape 2>) ![text](<Screenshot/Etape 2/docker images (counter-database ).png>)
+ 
+
+![alt text](<Screenshot/Etape 2/docker ps (counter-database ).png>)
+
+
+
 
 
 # Examen
