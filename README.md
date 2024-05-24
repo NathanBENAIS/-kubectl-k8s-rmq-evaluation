@@ -37,7 +37,29 @@ Voici les résultats :
  
 
 ![alt text](<Screenshot/Etape 2/docker ps (counter-database ).png>)
+Etape 3
 
+Pour mettre en place le serveur, les étapes suivantes  :
+
+Tout d'abord, la base de données a été déployée. Cela a impliqué la construction de l'image Docker pour la base de données à l'aide de la commande "docker build -t nathanbenais/counter-database .", suivie de son envoi vers un registre Docker via "docker push nathanbenais/counter-database".
+
+Ensuite, après avoir configuré les paramètres dans le fichier YAML "counter-database-deployment.yaml" à l'aide de la commande "kubectl apply -f counter-database-deployment.yaml", la base de données a été déployée.
+
+Une fois la base de données opérationnelle, le serveur a été déployé. Pour ce faire, l'image Docker du serveur a été construite avec la commande "docker build -t nathanbenais/counter-backend .", puis poussée vers le registre Docker via "docker push nathanbenais/counter-backend".
+
+Enfin, le déploiement du pod du serveur a été effectué en appliquant la configuration spécifiée dans le fichier YAML "counter-backend-deployment.yaml" avec la commande "kubectl apply -f counter-backend-deployment.yaml".
+
+Après ces déploiements, la vérification a été réalisée en listant les pods à l'aide de "kubectl get pods","kubectl get services" pour confirmer que les pods de la base de données et du serveur étaient en cours d'exécution. Voici le résultat :
+
+![alt text](<Screenshot/Etape 3/kubectl get pods.png>)
+
+De plus, pour examiner les journaux du pod du serveur et vérifier son bon fonctionnement, la commande "kubectl logs counter-backend-deployment-6c5fcbd85c-mxdr4" a été utilisée.
+
+![alt text](<Screenshot/Etape 3/kubectl logs counter-backend-deployment-6c5fcbd85c-mxdr4 1er partie.png>)
+![alt text](<Screenshot/Etape 3/kubectl logs counter-backend-deployment-6c5fcbd85c-mxdr4 2eme partie.png>)
+
+
+![alt text](<Screenshot/Etape 3/kubectl logs counter-database-deploymentfd679b886d68jf.png>)
 
 
 

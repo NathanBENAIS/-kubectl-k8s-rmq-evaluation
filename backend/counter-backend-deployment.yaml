@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-backend-deployment
+  namespace: nathanbenais
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: counter-backend
+  template:
+    metadata:
+      labels:
+        app: counter-backend
+    spec:
+      containers:
+        - name: counter-backend
+          image: nathanbenais/counter-backend:latest
+          env:
+            - name: RABBITMQ_URL
+              value: "amqp://162.19.110.159:5672"
+            - name: PGHOST
+              value: "counter-database-service"
+            - name: PGPORT
+              value: "5432"      
+            - name: PGUSER
+              value: "myuser"
+            - name: PGDATABASE
+              value: "mydatabase"
+            - name: PGPASSWORD
+              value: "mypassword"        
+            - name: PORT
+              value: "5432"                        
+          ports:
+            - containerPort: 4040
+
+

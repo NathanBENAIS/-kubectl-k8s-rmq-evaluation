@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: counter-database-deployment
+  namespace: nathanbenais
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: counter-database
+  template:
+    metadata:
+      labels:
+        app: counter-database
+    spec:
+      containers:
+      - name: counter-database
+        image: postgres:13
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_DB
+          value: "mydatabase"
+        - name: POSTGRES_USER
+          value: "myuser"
+        - name: POSTGRES_PASSWORD
+          value: "mypassword"
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+      volumes:
+      - name: postgres-storage
+        emptyDir: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: counter-database-service
+  namespace: nathanbenais
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: counter-database
